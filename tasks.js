@@ -49,7 +49,7 @@ const user = {
   }
 };
 function deepClone(obj) {
-  if (obj === 0 || typeof obj !== 'object') return obj;
+  if (obj === null || typeof obj !== 'object') return obj;
   if (Array.isArray(obj)) {
     return obj.map(deepClone);
   }
