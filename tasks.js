@@ -43,14 +43,24 @@ console.log(swapKeysAndValues(countryCodes));
 const user = {
   name: "John",
   age: 30,
-  address: "New York"
+  address: {
+    country: "usa",
+    city: "New York"
+  }
 };
-function cloneObject(obj) {
+function deepClone(obj) {
+  if (obj === 0 || typeof obj !== 'object') return obj;
+  if (Array.isArray(obj)) {
+    return obj.map(deepClone);
+  }
   const clonne = {};
-  return Object.assign(clonne, obj);
+  for (let key in obj) {
+    clonne[key] = deepClone(obj[key]);
+  }
+  return clonne;
 }
-console.log(cloneObject(user));
-
+const copy = deepClone(user);
+console.log(copy);
 
 //5.Группировать пользователей по возрасту
 
